@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation 'com.squareup:javapoet:1.13.0' // square开源的 Java 代码生成框架
+    implementation 'com.google.auto.service:auto-service:1.0' //Google开源的用于注册自定义注解处理器的工具
+
+    implementation project(path: ':myAnnotationLib')  //依赖注解声明库
+}

@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name = "rui_v3_kotlin"
+include ':myAptLib'
+include ':myAnnotationLib'
