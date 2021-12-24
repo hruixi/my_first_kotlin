@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             tv.text = "description:${it?.description} \n\n" +
                       "harvest:${it?.harvestGrantNotGrant}"
         })
-        Handler().postDelayed({
+        Handler(this.mainLooper).postDelayed({
             viewModel.okhttpRequest()
         }, 3000)
 
