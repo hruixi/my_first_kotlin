@@ -3,6 +3,7 @@ package com.huahua.mykotlin
 import android.widget.TextView
 import com.huahua.mykotlin.MyAnnotation.MyAnnotation
 import com.huahua.mykotlin.MyAnnotation.MyKotlinAnnotation
+import java.util.*
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.BlockingDeque
 import java.util.concurrent.ThreadPoolExecutor
@@ -40,8 +41,10 @@ fun parseMyAnnotation_method() {
 
 
 fun main(args: Array<String>) {
-    parseMyAnnotation_class()
-    parseMyAnnotation_method()
+//    parseMyAnnotation_class()
+//    parseMyAnnotation_method()
+    val pps = System.getProperties()
+    pps.list(System.out)
 }
 
 

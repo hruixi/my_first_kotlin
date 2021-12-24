@@ -17,6 +17,7 @@ import okhttp3.Cache
 import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -61,7 +62,13 @@ class MainRepository {
         }
     }
 
-    fun okhttpRequest() : Observable<DisplayBean> = service.display()
+//    fun okhttpRequest() : Observable<DisplayBean> = service.display()
+    suspend fun okhttpRequest() : retrofit2.Response<DisplayBean> {
+        return withContext(Dispatchers.IO) {
+            service.display()
+        }
+    }
+
 
     fun customerInfo() : Observable<ResponseBody> = service.customerInfo("eyJsb2NhbGUiOiJlbl9VUyIsImFsZyI6IkhTNTEyIn0.eyJzdWIiOiIwOTk1MDc1NDgwMSIsImV4cCI6MTYyOTkxNjM4M30.JF7TGGgVb4DnQnrKM_tulyrCZMVJ9TRogdepLm0Ij--cshy1Eq48jyFx52iIyvUIA3X5PCBXjOuv3fRcSbvHSQ")
 //    fun customerInfo() : Observable<ResponseBody> = service.customerInfo()

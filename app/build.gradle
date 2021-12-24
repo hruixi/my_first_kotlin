@@ -65,4 +65,7 @@ dependencies {
     implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycle2SdkVersion"
     implementation "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycle2SdkVersion"
     implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycle2SdkVersion"
+
+    //kotlin的协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt'
 }

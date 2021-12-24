@@ -34,15 +34,22 @@ class MainViewModel : ViewModel() {
     }
 
     fun okhttpRequest() {
-        mainRepository.okhttpRequest()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                displayBean.value = it
-            },{
-                it.printStackTrace()
-            })
-            .isDisposed
+        /** 使用rxJava做线程调度 **/
+//        mainRepository.okhttpRequest()
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                displayBean.value = it
+//            },{
+//                it.printStackTrace()
+//            })
+//            .isDisposed
+
+        /** 使用协程进行通信和线程调度 **/
+        viewModelScope.launch {
+            val response = mainRepository.okhttpRequest()
+            Log.i("HRX", "$response")
+        }
     }
 
     fun customerInfo() {

@@ -3,6 +3,7 @@ package com.huahua.mykotlin.model
 import com.huahua.mykotlin.model.bean.DisplayBean
 import com.squareup.okhttp.ResponseBody
 import io.reactivex.Observable
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
 
@@ -13,8 +14,10 @@ import retrofit2.http.Header
  * Date 2021/8/18 16:33
  */
 interface MainService {
+//    @GET("loanapp/display")
+//    fun display() : Observable<DisplayBean>
     @GET("loanapp/display")
-    fun display() : Observable<DisplayBean>
+    fun display() : retrofit2.Response<DisplayBean>
 
     @GET("record/customer-info")
 //    fun customerInfo() : Observable<ResponseBody>

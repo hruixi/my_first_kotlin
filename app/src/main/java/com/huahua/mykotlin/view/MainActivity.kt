@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.MainThread
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.huahua.myannotationlib.BindViewByID
 import com.huahua.mykotlin.MyAnnotation.BindViewTo
@@ -18,6 +19,7 @@ import com.huahua.mykotlin.apt.bindAllViewsByAnnotation
 import com.huahua.mykotlin.model.bean.DisplayBean
 import com.huahua.mykotlin.model.bean.SecInfo
 import com.huahua.mykotlin.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     @BindViewTo(R.id.textView)
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
      需添加依赖 implementation 'androidx.activity:activity-ktx:1.2.3'
      viewModels() 内部也是通过 创建 ViewModel 方式2 来创建的 ViewModel
     **/
-    private val mainViewModel:MainViewModel by viewModels()
+//    private val mainViewModel:MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.okhttpRequest()
         }, 3000)
 
-        viewModel.customerInfo()
+//        viewModel.customerInfo()
     }
 
 }
