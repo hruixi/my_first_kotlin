@@ -36,14 +36,17 @@ class MainDrawerActivity : AppCompatActivity() {
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
+        // 1、导航容器
         val navController = findNavController(R.id.nav_host_fragment_content_main_drawer)
-
+        // 2、导航内容
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
             ), drawerLayout
         )
+        // 3、将导航容器和导航内容绑定
         setupActionBarWithNavController(navController, appBarConfiguration)
+        // 4、将侧边抽屉栏与导航容器绑定
         navView.setupWithNavController(navController)
     }
 
