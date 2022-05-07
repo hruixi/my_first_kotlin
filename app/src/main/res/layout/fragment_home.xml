@@ -9,5 +9,12 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/bli_vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <WebView
+        android:id="@+id/closeli_H5_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
