@@ -1,14 +1,18 @@
 package com.rain.mykotlin.view.home
 
 import android.os.Bundle
+import android.util.LayoutDirection
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.rain.mykotlin.R
 import com.rain.mykotlin.databinding.FragmentHomeBinding
 import com.rain.mykotlin.view.customize.bli3D.BliPageTransformer
 import com.rain.mykotlin.view.customize.bli3D.BliPagerAdapter
+import com.rain.mykotlin.view.customize.bli3D.BliViewItemBean
+import com.rain.mykotlin.view.customize.bli3D.HomeViewHolder
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
@@ -16,22 +20,34 @@ class HomeFragment : Fragment() {
 
     private val binding get() = _binding!!
     private val bilPageTransformer = BliPageTransformer()
-    private val pagerAdapter = BliPagerAdapter()
+    private lateinit var pagerAdapter: BliPagerAdapter<BliViewItemBean>
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         initView()
         return binding.root
     }
 
     private fun initView() {
+        val beanList = mutableListOf<BliViewItemBean>()
+        beanList.add(BliViewItemBean(resources.getDrawable(R.mipmap.image_1, null), "222", "333", "444"))
+        beanList.add(BliViewItemBean(resources.getDrawable(R.mipmap.image_2, null), "31", "245", "467"))
+        beanList.add(BliViewItemBean(resources.getDrawable(R.mipmap.image_2, null), "435", "335633", "1002"))
+
+        pagerAdapter = object : BliPagerAdapter<BliViewItemBean>(context, R.layout.bli_viewpager_item, beanList) {
+            override fun toBindVH(holder: HomeViewHolder, position: Int) {
+                holder.binding.bliImg.setImageDrawable((getItemData(position))?.image)
+                holder.binding.bliLike.text = getItemData(position)?.likeCount
+                holder.binding.bliShare.text = getItemData(position)?.sharedCount
+                holder.binding.bliComment.text = getItemData(position)?.commentCount
+            }
+        }
+
         binding.bliVp.adapter = pagerAdapter
         binding.bliVp.setPageTransformer(bilPageTransformer)
     }

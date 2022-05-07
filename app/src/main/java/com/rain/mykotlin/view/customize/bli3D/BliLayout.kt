@@ -5,15 +5,16 @@ import android.graphics.Camera
 import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
+import android.widget.LinearLayout
 
 /**
  * 作者: hruix
  * 时间: 2022/2/28
  * 描述: XXX
  */
-class BliConstraintLayout@JvmOverloads constructor(
+class BliLayout@JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+) : LinearLayout(context, attrs, defStyleAttr) {
     var rotateY: Float = 0f
         set (value) {
             field = value
@@ -42,7 +43,7 @@ class BliConstraintLayout@JvmOverloads constructor(
         }
         canvas.setMatrix(matrix)
         //camera恢复状态
-        canvas.restore()
+        camera.restore()
         super.dispatchDraw(canvas)
     }
 }

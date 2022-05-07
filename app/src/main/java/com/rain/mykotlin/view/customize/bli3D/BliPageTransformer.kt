@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
  */
 class BliPageTransformer : ViewPager2.PageTransformer {
     override fun transformPage(page: View, position: Float) {
-        val bliConstraintLayout = page as BliConstraintLayout
+        val bliConstraintLayout = page as BliLayout
         /**
          * 倾斜度
          */
