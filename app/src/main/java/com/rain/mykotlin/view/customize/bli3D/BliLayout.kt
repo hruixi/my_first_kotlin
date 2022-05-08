@@ -3,8 +3,8 @@ package com.rain.mykotlin.view.customize.bli3D
 import android.content.Context
 import android.graphics.Camera
 import android.graphics.Canvas
+import android.graphics.Matrix
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
 
 /**
@@ -22,6 +22,7 @@ class BliLayout@JvmOverloads constructor(
         }
     var isLeftRotate = true
     private var camera = Camera()
+    private var mMatrix = Matrix()
 
     override fun dispatchDraw(canvas: Canvas) {
         //camera保存状态
@@ -30,18 +31,18 @@ class BliLayout@JvmOverloads constructor(
         camera.rotateY(rotateY)
         //将变换应用到canvas上
         camera.applyToCanvas(canvas)
-        camera.getMatrix(matrix)
+        camera.getMatrix(mMatrix)
 
         if (!isLeftRotate) {
             //设置靠左进行旋转
-            matrix.preTranslate((-width).toFloat(), (-height shr 1).toFloat())
-            matrix.postTranslate(width.toFloat(), (height shr 1).toFloat())
+            mMatrix.preTranslate((-width).toFloat(), (-height shr 1).toFloat())
+            mMatrix.postTranslate(width.toFloat(), (height shr 1).toFloat())
         } else {
             //设置靠右进行旋转
-            matrix.preTranslate(0F, (-height shr 1).toFloat())
-            matrix.postTranslate(0F, (height shr 1).toFloat())
+            mMatrix.preTranslate(0F, (-height shr 1).toFloat())
+            mMatrix.postTranslate(0F, (height shr 1).toFloat())
         }
-        canvas.setMatrix(matrix)
+        canvas.setMatrix(mMatrix)
         //camera恢复状态
         camera.restore()
         super.dispatchDraw(canvas)
