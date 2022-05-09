@@ -14,6 +14,7 @@ import com.rain.mykotlin.R
 import com.rain.mykotlin.databinding.FragmentHomeBinding
 import com.rain.mykotlin.view.customize.autoLoop.BannerAdapter
 import com.rain.mykotlin.view.customize.autoLoop.BaseBannerAdapter
+import com.rain.mykotlin.view.customize.autoLoop.GalleryTransformer
 import com.rain.mykotlin.view.customize.bli3D.BliPageTransformer
 import com.rain.mykotlin.view.customize.bli3D.BliPagerAdapter
 import com.rain.mykotlin.view.customize.bli3D.BliViewItemBean
@@ -24,7 +25,6 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
-    private val bilPageTransformer = BliPageTransformer()
     private lateinit var pagerAdapter: BliPagerAdapter<BliViewItemBean>
     private lateinit var bannerAdapter: BannerAdapter
 
@@ -68,13 +68,14 @@ class HomeFragment : Fragment() {
             //开启循环滚动
             .setCanLoop(true)
             //设置轮询间隔
-//            .setInterval(2)
+            .setInterval(2)
             //设置显示多个视图的宽度
-//            .setRevealWidth(50)
+            .setRevealWidth(50)
             //设置视图间隔
-//            .setPageMargin(8)
+            .setPageMargin(8)
             //设置滚动动画
-            .addPageTransformer(bilPageTransformer)
+            .addPageTransformer(BliPageTransformer())
+            .addPageTransformer(GalleryTransformer())
             //显示指示器
             .setCanShowIndicator(true)
             //设置适配器
