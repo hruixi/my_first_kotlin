@@ -15,6 +15,7 @@ import com.rain.mykotlin.databinding.BliViewpagerItemBinding
 abstract class BliPagerAdapter<T>(context: Context?, layoutId: Int, mutableList: MutableList<T>) : RecyclerView.Adapter<HomeViewHolder>() {
     private var data = mutableListOf<T>()
     private var layoutId = -1
+    private var isCanLoop = false
     private lateinit var context: Context
 
     init {
@@ -41,11 +42,28 @@ abstract class BliPagerAdapter<T>(context: Context?, layoutId: Int, mutableList:
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        toBindVH(holder, position)
+        val realPosition: Int = getRealPosition(position)
+        toBindVH(holder, realPosition)
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return if (isCanLoop && data.size > 1) {
+            Int.MAX_VALUE /** 循坏滑动的精髓在这 **/
+        } else {
+            data.size
+        }
+    }
+
+    fun setIsCanLoop(canLoop: Boolean) {
+        this.isCanLoop = canLoop
+    }
+
+    private fun getRealPosition(position: Int): Int {
+        val pageSize = data.size
+        if (pageSize == 0) {
+            return 0
+        }
+        return if (isCanLoop) (position + pageSize) % pageSize else position
     }
 
     abstract fun toBindVH(holder: HomeViewHolder, position: Int)

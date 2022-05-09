@@ -147,7 +147,7 @@ class BannerViewPager<T> : RelativeLayout, LifecycleObserver {
     }
 
     private fun initView() {
-        inflate(context, R.layout.bvp_layout, this)
+        inflate(context, R.layout.banner_viewpager_layout, this)
         mViewPager = findViewById(R.id.vp_main)
         mIndicatorLayout = findViewById(R.id.bvp_layout_indicator)
     }
@@ -343,12 +343,13 @@ class BannerViewPager<T> : RelativeLayout, LifecycleObserver {
      * @param transformer
      * @return
      */
-    fun setPageTransformer(transformer: ViewPager2.PageTransformer): BannerViewPager<T> {
-        mViewPager.setPageTransformer(transformer)
-        return this
-    }
+//    fun setPageTransformer(transformer: ViewPager2.PageTransformer): BannerViewPager<T> {
+//        mViewPager.setPageTransformer(transformer)
+//        return this
+//    }
 
     /**
+     * 设置页面转换器
      * [transformer] PageTransformer that will modify each page's animation properties
      */
     fun addPageTransformer(transformer: ViewPager2.PageTransformer): BannerViewPager<T> {
@@ -361,7 +362,7 @@ class BannerViewPager<T> : RelativeLayout, LifecycleObserver {
     }
 
 
-    fun removeMarginPageTransformer() {
+    private fun removeMarginPageTransformer() {
         if (mMarginPageTransformer != null) {
             mCompositePageTransformer?.removeTransformer(mMarginPageTransformer!!)
         }

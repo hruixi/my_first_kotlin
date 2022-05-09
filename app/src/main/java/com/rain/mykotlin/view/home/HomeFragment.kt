@@ -45,36 +45,41 @@ class HomeFragment : Fragment() {
         beanList.add(BliViewItemBean(resources.getDrawable(R.mipmap.image_2, null), "31", "245", "467"))
         beanList.add(BliViewItemBean(resources.getDrawable(R.mipmap.image_3, null), "435", "335633", "1002"))
 
-        pagerAdapter = object : BliPagerAdapter<BliViewItemBean>(context, R.layout.bli_viewpager_item, beanList) {
-            override fun toBindVH(holder: HomeViewHolder, position: Int) {
-                holder.binding.bliImg.setImageDrawable((getItemData(position))?.image)
-                holder.binding.bliLike.text = getItemData(position)?.likeCount
-                holder.binding.bliShare.text = getItemData(position)?.sharedCount
-                holder.binding.bliComment.text = getItemData(position)?.commentCount
-            }
-        }
-        binding.bliVp.adapter = pagerAdapter
-        binding.bliVp.setPageTransformer(bilPageTransformer)
+//        pagerAdapter = object : BliPagerAdapter<BliViewItemBean>(context, R.layout.bli_viewpager_item, beanList) {
+//            override fun toBindVH(holder: HomeViewHolder, position: Int) {
+//                holder.binding.bliImg.setImageDrawable((getItemData(position))?.image)
+//                holder.binding.bliLike.text = getItemData(position)?.likeCount
+//                holder.binding.bliShare.text = getItemData(position)?.sharedCount
+//                holder.binding.bliComment.text = getItemData(position)?.commentCount
+//            }
+//        }.apply {
+//            setIsCanLoop(true)
+//            binding.bliVp.adapter = this
+//        }
+//        binding.bliVp.setPageTransformer(bilPageTransformer)
 
-//        pagerAdapter = BannerAdapter()
-//        binding.bliVp
-//            //设置生命周期
-//            .setLifecycleRegistry(lifecycle)
-//            //开启自动轮询
-////            .setAutoPlay(false)
-//            //开启循环滚动
-//            .setCanLoop(true)
-//            //设置轮询间隔
+        /** 循环或者自动 **/
+        bannerAdapter = BannerAdapter()
+        binding.bliBannerVp
+            //设置生命周期
+            .setLifecycleRegistry(lifecycle)
+            //开启自动轮询
+            .setAutoPlay(false)
+            //开启循环滚动
+            .setCanLoop(true)
+            //设置轮询间隔
 //            .setInterval(2)
-//            //设置显示多个视图的宽度
-////            .setRevealWidth(50)
-//            //设置滚动动画
-//            .setPageTransformer(bilPageTransformer)
-//            //显示指示器
-////            .setCanShowIndicator(true)
-//            //设置适配器
-//            .setAdapter(bannerAdapter)
-//            .create(beanList)
+            //设置显示多个视图的宽度
+//            .setRevealWidth(50)
+            //设置视图间隔
+//            .setPageMargin(8)
+            //设置滚动动画
+            .addPageTransformer(bilPageTransformer)
+            //显示指示器
+            .setCanShowIndicator(true)
+            //设置适配器
+            .setAdapter(bannerAdapter)
+            .create(beanList)
     }
 
     override fun onDestroyView() {
