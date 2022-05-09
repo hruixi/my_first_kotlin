@@ -43,6 +43,7 @@ class BliLayout@JvmOverloads constructor(
             mMatrix.postTranslate(0F, (height shr 1).toFloat())
         }
         canvas.setMatrix(mMatrix)
+
         //camera恢复状态
         camera.restore()
         super.dispatchDraw(canvas)
